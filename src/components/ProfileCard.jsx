@@ -2,11 +2,11 @@ function ProfileCard() {
   return (
     <section className="profile-card" id="inicio">
       <div className="profile-image-container">
-        <img
-          src="/profile.jpg"
-          alt="Foto de perfil"
-          className="profile-image"
-        />
+      <img
+        src={`${import.meta.env.BASE_URL}profile.jpg`}
+        alt="Foto de perfil"
+        className="profile-image"
+      />
       </div>
 
       <div className="profile-content">
