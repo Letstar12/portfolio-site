@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import ProfileCard from "./components/ProfileCard";
-import ActivityCard from "./components/ActivityCard";
 import Footer from "./components/Footer";
 
 import { getPortfolioData } from "./services/portfolio";
@@ -16,11 +15,7 @@ function App() {
   useEffect(() => {
     async function loadPortfolio() {
       try {
-        setLoading(true);
-        setError("");
-
         const data = await getPortfolioData();
-
         setPortfolio(data);
       } catch (err) {
         console.error(err);
@@ -53,8 +48,8 @@ function App() {
             </p>
 
             <p>
-              O conteúdo é atualizado automaticamente a partir das
-              atividades armazenadas no meu repositório de estudos.
+              As atividades são atualizadas automaticamente a partir
+              do meu repositório de estudos.
             </p>
           </section>
 
@@ -64,8 +59,8 @@ function App() {
             <h2>Meu portfólio</h2>
 
             <p>
-              Confira abaixo as atividades desenvolvidas durante
-              minha formação.
+              Confira abaixo as atividades desenvolvidas durante minha
+              formação.
             </p>
           </section>
 
@@ -77,8 +72,7 @@ function App() {
                 <h2>Atividades do curso</h2>
 
                 <p>
-                  Conteúdo atualizado automaticamente a partir do
-                  repositório de atividades.
+                  Conteúdo atualizado automaticamente.
                 </p>
               </div>
             </div>
@@ -96,32 +90,26 @@ function App() {
             )}
 
             {!loading && !error && portfolio && (
-              <div className="portfolio-data">
-                {portfolio.files?.length > 0 ? (
-                  <div className="github-files">
-                    {portfolio.files.map((file) => (
-                      <a
-                        href={file.url}
-                        key={file.path}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="github-file"
-                      >
-                        <span className="github-file-icon">📄</span>
+              <div className="github-files">
+                {portfolio.files?.map((file) => (
+                  <a
+                    href={file.url}
+                    key={file.path}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="github-file"
+                  >
+                    <span className="github-file-icon">
+                      📄
+                    </span>
 
-                        <span className="github-file-info">
-                          <strong>{file.name}</strong>
+                    <span className="github-file-info">
+                      <strong>{file.name}</strong>
 
-                          <small>{file.path}</small>
-                        </span>
-                      </a>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="github-status">
-                    <p>Nenhuma atividade encontrada.</p>
-                  </div>
-                )}
+                      <small>{file.path}</small>
+                    </span>
+                  </a>
+                ))}
               </div>
             )}
           </section>
