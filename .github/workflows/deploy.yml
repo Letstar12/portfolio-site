@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Baixar código
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Configurar Node.js
         uses: actions/setup-node@v4
@@ -34,11 +34,16 @@ jobs:
       - name: Gerar build
         run: npm run build
 
+      - name: Conferir arquivos publicados
+        run: |
+          echo "Arquivos dentro do dist:"
+          find dist -maxdepth 3 -type f | sort
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
 
       - name: Fazer upload do site
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
